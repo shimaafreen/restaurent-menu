@@ -137,7 +137,18 @@ public class FoodieGoodieMenu extends Application {
 
 
 //nova
+// Scene
+        Scene scene = new Scene(root, 450, 550);
 
+        stage.setTitle("Foodie Goodie Restaurant");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public static void main(String[] args) {
+        launch(args);
+    }
+}
 
 
 
