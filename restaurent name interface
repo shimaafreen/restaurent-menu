@@ -108,6 +108,22 @@ public class FoodieGoodieMenu extends Application {
             orderSummary.setText(summary.toString());
         });
 //asma
+// Layout
+        VBox root = new VBox(10);
+        root.setPadding(new Insets(15));
+
+        root.getChildren().addAll(
+                restaurantName,
+                menuTitle,
+                burger,
+                pizza,
+                friedRice,
+                chickenFry,
+                coke,
+                iceCream,
+                orderButton,
+                orderSummary
+        );
 
 
 
