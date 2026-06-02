@@ -27,39 +27,7 @@ public class FoodieGoodieMenu extends Application {
         CheckBox friedRice = new CheckBox("Fried Rice - 300 Tk");
         CheckBox chickenFry = new CheckBox("Chicken Fry - 180 Tk");
         CheckBox coke = new CheckBox("Coke - 40 Tk");
-        CheckBox iceCream = new CheckBox("Ice Cream - 100 Tk");
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        CheckBox iceCream = new CheckBox("Ice Cream - 100 Tk")
 //shima
 // Button Action
         orderButton.setOnAction(e -> {
@@ -124,34 +92,6 @@ public class FoodieGoodieMenu extends Application {
                 orderButton,
                 orderSummary
         );
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //nova
 // Scene
         Scene scene = new Scene(root, 450, 550);
