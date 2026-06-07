@@ -226,7 +226,10 @@ updatePriceBtn.setOnAction(e -> {
                 addItemBtn,
                 updatePriceBtn,
                 new Separator(),
-                cartItemsBox
+                new Label("Selected Items:"),
+                cartItemsBox,
+                new Separator(),
+                totalBillLabel
         );
 
         root.setCenter(cartPage);
