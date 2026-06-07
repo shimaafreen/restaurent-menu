@@ -161,12 +161,25 @@ public class FoodieGoodieMenu extends Application {
                 orderSummary
         );
 //nova
-// Scene
-        Scene scene = new Scene(root, 450, 550);
+updatePriceBtn.setOnAction(e -> {
 
-        stage.setTitle("Foodie Goodie Restaurant");
-        stage.setScene(scene);
-        stage.show();
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText(null);
+            alert.setContentText("Price Updated Successfully");
+            alert.showAndWait();
+        });
+
+        cartPage.getChildren().addAll(
+                title,
+                itemField,
+                priceField,
+                addItemBtn,
+                updatePriceBtn,
+                new Separator(),
+                cartItemsBox
+        );
+
+        root.setCenter(cartPage);
     }
 
     public static void main(String[] args) {
