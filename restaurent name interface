@@ -180,25 +180,23 @@ public class FoodieGoodieMenu extends Application {
                 orderButton,
                 orderSummary
         );
-//-----------CART PAGE----------------
-private void showCart() {
+//------ Cart Page--------
+    private void showCart() {
 
         VBox cartPage = new VBox(15);
         cartPage.setPadding(new Insets(20));
 
-        Label title = new Label("Cart Management");
+        Label title = new Label("Cart");
         title.setStyle("-fx-font-size:20px; -fx-font-weight:bold;");
 
         TextField itemField = new TextField();
-        itemField.setPromptText("Enter New Item");
+        itemField.setPromptText("New Item Name");
 
         TextField priceField = new TextField();
-        priceField.setPromptText("Enter Price");
+        priceField.setPromptText("Price");
 
         Button addItemBtn = new Button("Add Item");
         Button updatePriceBtn = new Button("Update Price");
-
-        cartItemsBox = new VBox(10);
 
         addItemBtn.setOnAction(e -> {
 
@@ -216,6 +214,7 @@ private void showCart() {
                 priceField.clear();
             }
         });
+
 
 //nova
 updatePriceBtn.setOnAction(e -> {
