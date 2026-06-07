@@ -56,8 +56,7 @@ public class FoodieGoodieMenu extends Application {
         stage.setScene(scene);
         stage.show();
     }
-
-    // ================= DASHBOARD =================
+ // Dashboard Page
     private void showDashboard() {
 
         VBox dashboard = new VBox(15);
@@ -66,25 +65,19 @@ public class FoodieGoodieMenu extends Application {
         Label title = new Label("Restaurant Dashboard");
         title.setStyle("-fx-font-size:22px; -fx-font-weight:bold;");
 
-        Label name = new Label("Restaurant Name : Foodie Goodie");
-        Label location = new Label("Location : Rangpur, Bangladesh");
-        Label welcome = new Label("Welcome to Foodie Goodie Restaurant");
+        Label name = new Label("Restaurant Name: Foodie Goodie");
+        Label location = new Label("Location: Dhaka");
 
-        dashboard.getChildren().addAll(
-                title,
-                name,
-                location,
-                welcome
-        );
+        dashboard.getChildren().addAll(title, name, location);
 
         root.setCenter(dashboard);
     }
 
-    // ================= MENU PAGE =================
+    // Menu Page
     private void showMenu() {
 
         VBox mainBox = new VBox(15);
-        mainBox.setPadding(new Insets(15));
+        mainBox.setPadding(new Insets(20));
 
         Label title = new Label("Restaurant Menu");
         title.setStyle("-fx-font-size:20px; -fx-font-weight:bold;");
@@ -102,16 +95,16 @@ public class FoodieGoodieMenu extends Application {
                 "Sandwich"
         };
 
-        String[] prices = {
-                "250 Tk",
-                "450 Tk",
-                "300 Tk",
-                "280 Tk",
-                "120 Tk",
-                "150 Tk"
+        double[] prices = {
+                250,
+                450,
+                300,
+                280,
+                120,
+                150
         };
 
-        int item = 0;
+        int itemIndex = 0;
 
         for (int row = 0; row < 3; row++) {
 
@@ -126,29 +119,42 @@ public class FoodieGoodieMenu extends Application {
                         "-fx-border-width:1;"
                 );
 
-                Label foodName = new Label(foods[item]);
-                Label foodPrice = new Label(prices[item]);
+                String foodName = foods[itemIndex];
+                double foodPrice = prices[itemIndex];
+
+                Label nameLabel = new Label(foodName);
+                Label priceLabel = new Label(foodPrice + " Tk");
 
                 Button addButton = new Button("Add To Cart");
 
-                String food = foods[item];
-
                 addButton.setOnAction(e -> {
+
+                    Label itemLabel =
+                            new Label(foodName + " - " + foodPrice + " Tk");
+
+                    cartItemsBox.getChildren().add(itemLabel);
+
+                    totalBill += foodPrice;
+
+                    totalBillLabel.setText(
+                            "Total Bill: " + totalBill + " Tk"
+                    );
+
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setHeaderText(null);
-                    alert.setContentText(food + " added to cart");
+                    alert.setContentText(foodName + " added to cart!");
                     alert.showAndWait();
                 });
 
                 card.getChildren().addAll(
-                        foodName,
-                        foodPrice,
+                        nameLabel,
+                        priceLabel,
                         addButton
                 );
 
                 grid.add(card, col, row);
 
-                item++;
+                itemIndex++;
             }
         }
 
@@ -156,6 +162,7 @@ public class FoodieGoodieMenu extends Application {
 
         root.setCenter(mainBox);
     }
+   
 //asma
 // Layout
         VBox root = new VBox(10);
