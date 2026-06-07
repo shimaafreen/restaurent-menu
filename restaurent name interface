@@ -217,12 +217,75 @@ public class FoodieGoodieMenu extends Application {
 
 
 //nova
-updatePriceBtn.setOnAction(e -> {
+ // Update Bill by Percentage
+        updatePriceBtn.setOnAction(e -> {
 
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setHeaderText(null);
-            alert.setContentText("Price Updated Successfully");
-            alert.showAndWait();
+            TextInputDialog dialog =
+                    new TextInputDialog();
+
+            dialog.setTitle(
+                    "Update Price"
+            );
+
+            dialog.setHeaderText(
+                    "Enter Percentage"
+            );
+
+            dialog.setContentText(
+                    "Use + for increase, - for decrease"
+            );
+
+            dialog.showAndWait().ifPresent(input -> {
+
+                try {
+
+                    double percentage =
+                            Double.parseDouble(input);
+
+                    totalBill =
+                            totalBill +
+                                    (totalBill *
+                                            percentage /
+                                            100);
+
+                    totalBillLabel.setText(
+                            String.format(
+                                    "Total Bill: %.2f Tk",
+                                    totalBill
+                            )
+                    );
+
+                    Alert alert =
+                            new Alert(
+                                    Alert.AlertType.INFORMATION
+                            );
+
+                    alert.setHeaderText(null);
+
+                    alert.setContentText(
+                            "Bill Updated By "
+                                    + percentage
+                                    + "%"
+                    );
+
+                    alert.showAndWait();
+
+                } catch (NumberFormatException ex) {
+
+                    Alert alert =
+                            new Alert(
+                                    Alert.AlertType.ERROR
+                            );
+
+                    alert.setHeaderText(null);
+
+                    alert.setContentText(
+                            "Invalid Input!"
+                    );
+
+                    alert.showAndWait();
+                }
+            });
         });
 
         cartPage.getChildren().addAll(
@@ -232,7 +295,7 @@ updatePriceBtn.setOnAction(e -> {
                 addItemBtn,
                 updatePriceBtn,
                 new Separator(),
-                new Label("Selected Items:"),
+                new Label("Cart Items"),
                 cartItemsBox,
                 new Separator(),
                 totalBillLabel
