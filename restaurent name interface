@@ -1,33 +1,46 @@
 //prokrity
 import javafx.application.Application;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.layout.VBox;
+import javafx.scene.control.*;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
 public class FoodieGoodieMenu extends Application {
 
+    private BorderPane root;
+    private VBox cartItemsBox;
+
     @Override
     public void start(Stage stage) {
 
-        // Restaurant Name
-        Label restaurantName = new Label("🍽️ FOODIE GOODIE 🍽️");
-        restaurantName.setStyle("-fx-font-size: 24px; -fx-font-weight: bold;");
+        root = new BorderPane();
 
-        Label menuTitle = new Label("Restaurant Menu");
-        menuTitle.setStyle("-fx-font-size: 18px;");
+        // ================= SIDE MENU =================
+        VBox sideMenu = new VBox(15);
+        sideMenu.setPadding(new Insets(15));
+        sideMenu.setPrefWidth(180);
 
-        // Menu Items
-        CheckBox burger = new CheckBox("Burger - 250 Tk");
-        CheckBox pizza = new CheckBox("Pizza - 600 Tk");
-        CheckBox friedRice = new CheckBox("Fried Rice - 300 Tk");
-        CheckBox chickenFry = new CheckBox("Chicken Fry - 180 Tk");
-        CheckBox coke = new CheckBox("Coke - 40 Tk");
-        CheckBox iceCream = new CheckBox("Ice Cream - 100 Tk")
+        Label menuTitle = new Label("FOODIE GOODIE");
+        menuTitle.setStyle("-fx-font-size:18px; -fx-font-weight:bold;");
+
+        Button dashboardBtn = new Button("Dashboard");
+        Button menuBtn = new Button("Menu");
+        Button cartBtn = new Button("Cart");
+
+        dashboardBtn.setMaxWidth(Double.MAX_VALUE);
+        menuBtn.setMaxWidth(Double.MAX_VALUE);
+        cartBtn.setMaxWidth(Double.MAX_VALUE);
+
+        sideMenu.getChildren().addAll(
+                menuTitle,
+                dashboardBtn,
+                menuBtn,
+                cartBtn
+        );
+
+        root.setLeft(sideMenu);
 //shima
 // Button Actions
         dashboardBtn.setOnAction(e -> showDashboard());
