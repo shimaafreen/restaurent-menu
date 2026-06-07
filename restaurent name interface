@@ -160,7 +160,7 @@ public class FoodieGoodieMenu extends Application {
                 orderButton,
                 orderSummary
         );
-
+//-----------CART PAGE----------------
 private void showCart() {
 
         VBox cartPage = new VBox(15);
