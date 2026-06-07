@@ -29,52 +29,120 @@ public class FoodieGoodieMenu extends Application {
         CheckBox coke = new CheckBox("Coke - 40 Tk");
         CheckBox iceCream = new CheckBox("Ice Cream - 100 Tk")
 //shima
-// Button Action
-        orderButton.setOnAction(e -> {
+// Button Actions
+        dashboardBtn.setOnAction(e -> showDashboard());
+        menuBtn.setOnAction(e -> showMenu());
+        cartBtn.setOnAction(e -> showCart());
 
-            int total = 0;
-            StringBuilder summary = new StringBuilder();
+        // Default Page
+        showDashboard();
 
-            summary.append("===== FOODIE GOODIE =====\n");
-            summary.append("Order Summary\n\n");
+        Scene scene = new Scene(root, 900, 600);
 
-            if (burger.isSelected()) {
-                total += 250;
-                summary.append("Burger - 250 Tk\n");
+        stage.setTitle("Foodie Goodie Restaurant");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    // ================= DASHBOARD =================
+    private void showDashboard() {
+
+        VBox dashboard = new VBox(15);
+        dashboard.setPadding(new Insets(20));
+
+        Label title = new Label("Restaurant Dashboard");
+        title.setStyle("-fx-font-size:22px; -fx-font-weight:bold;");
+
+        Label name = new Label("Restaurant Name : Foodie Goodie");
+        Label location = new Label("Location : Rangpur, Bangladesh");
+        Label welcome = new Label("Welcome to Foodie Goodie Restaurant");
+
+        dashboard.getChildren().addAll(
+                title,
+                name,
+                location,
+                welcome
+        );
+
+        root.setCenter(dashboard);
+    }
+
+    // ================= MENU PAGE =================
+    private void showMenu() {
+
+        VBox mainBox = new VBox(15);
+        mainBox.setPadding(new Insets(15));
+
+        Label title = new Label("Restaurant Menu");
+        title.setStyle("-fx-font-size:20px; -fx-font-weight:bold;");
+
+        GridPane grid = new GridPane();
+        grid.setHgap(20);
+        grid.setVgap(20);
+
+        String[] foods = {
+                "Burger",
+                "Pizza",
+                "Chicken Fry",
+                "Pasta",
+                "Coffee",
+                "Sandwich"
+        };
+
+        String[] prices = {
+                "250 Tk",
+                "450 Tk",
+                "300 Tk",
+                "280 Tk",
+                "120 Tk",
+                "150 Tk"
+        };
+
+        int item = 0;
+
+        for (int row = 0; row < 3; row++) {
+
+            for (int col = 0; col < 2; col++) {
+
+                VBox card = new VBox(10);
+                card.setAlignment(Pos.CENTER);
+                card.setPadding(new Insets(10));
+
+                card.setStyle(
+                        "-fx-border-color:black;" +
+                        "-fx-border-width:1;"
+                );
+
+                Label foodName = new Label(foods[item]);
+                Label foodPrice = new Label(prices[item]);
+
+                Button addButton = new Button("Add To Cart");
+
+                String food = foods[item];
+
+                addButton.setOnAction(e -> {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setHeaderText(null);
+                    alert.setContentText(food + " added to cart");
+                    alert.showAndWait();
+                });
+
+                card.getChildren().addAll(
+                        foodName,
+                        foodPrice,
+                        addButton
+                );
+
+                grid.add(card, col, row);
+
+                item++;
             }
+        }
 
-            if (pizza.isSelected()) {
-                total += 600;
-                summary.append("Pizza - 600 Tk\n");
-            }
+        mainBox.getChildren().addAll(title, grid);
 
-            if (friedRice.isSelected()) {
-                total += 300;
-                summary.append("Fried Rice - 300 Tk\n");
-            }
-
-            if (chickenFry.isSelected()) {
-                total += 180;
-                summary.append("Chicken Fry - 180 Tk\n");
-            }
-
-            if (coke.isSelected()) {
-                total += 40;
-                summary.append("Coke - 40 Tk\n");
-            }
-
-            if (iceCream.isSelected()) {
-                total += 100;
-                summary.append("Ice Cream - 100 Tk\n");
-            }
-
-            summary.append("\n-------------------------\n");
-            summary.append("Total Bill = ");
-            summary.append(total);
-            summary.append(" Tk");
-
-            orderSummary.setText(summary.toString());
-        });
+        root.setCenter(mainBox);
+    }
 //asma
 // Layout
         VBox root = new VBox(10);
