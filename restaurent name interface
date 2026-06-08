@@ -10,20 +10,26 @@ import javafx.stage.Stage;
 public class FoodieGoodieMenu extends Application {
 
     private BorderPane root;
-    private VBox cartItemsBox;
+
+    private VBox cartItemsBox = new VBox(10);
+
+    private double totalBill = 0;
+
+    private Label totalBillLabel =
+            new Label("Total Bill: 0.00 Tk");
 
     @Override
     public void start(Stage stage) {
 
         root = new BorderPane();
 
-        // ================= SIDE MENU =================
+        // Left Menu
         VBox sideMenu = new VBox(15);
         sideMenu.setPadding(new Insets(15));
         sideMenu.setPrefWidth(180);
 
-        Label menuTitle = new Label("FOODIE GOODIE");
-        menuTitle.setStyle("-fx-font-size:18px; -fx-font-weight:bold;");
+        Label logo = new Label("FOODIE GOODIE");
+        logo.setStyle("-fx-font-size:18px; -fx-font-weight:bold;");
 
         Button dashboardBtn = new Button("Dashboard");
         Button menuBtn = new Button("Menu");
@@ -34,11 +40,13 @@ public class FoodieGoodieMenu extends Application {
         cartBtn.setMaxWidth(Double.MAX_VALUE);
 
         sideMenu.getChildren().addAll(
-                menuTitle,
+                logo,
                 dashboardBtn,
                 menuBtn,
                 cartBtn
         );
+
+        root.setLeft(sideMenu);
 
         root.setLeft(sideMenu);
 //shima
